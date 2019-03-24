@@ -51,5 +51,25 @@ namespace Csharp4pwn.String
             }
             return max;
         }
+
+        public static string Multiply(this string str, int cnt)
+        {
+            string s = "";
+            for (int i = 0; i < cnt; i++)
+            {
+                s += str;
+            }
+            return s;
+        }
+
+        public static string Multiply(this char str, int cnt)
+        {
+            string s = "";
+            for (int i = 0; i < cnt; i++)
+            {
+                s += str;
+            }
+            return s;
+        }
     }
 }
