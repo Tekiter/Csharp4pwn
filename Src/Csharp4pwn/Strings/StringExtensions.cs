@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Csharp4pwn.String
+namespace Csharp4pwn.Strings
 {
     public static class StringExtensions
     {
