@@ -56,14 +56,14 @@ namespace Csharp4pwn.BruteForce
         /// <summary>
         /// Start bruteforcing from given startpattern
         /// </summary>
-        /// <param name="startpattern">startpattern "ab" will create pattern "abaa", "abab", "abac" ... </param>
+        /// <param name="patterngroup">startpattern "ab" will create pattern "abaa", "abab", "abac" ... </param>
         /// <param name="length">Pattern Length</param>
         /// <returns>Found Pattern</returns>
-        public bool Start(string startpattern, int length)
+        public bool Start(string patterngroup, int length)
         {
             isworking = true;
             IsFound = false;
-            PatternNext(new StringBuilder(startpattern.PadRight(length)), startpattern.Length, length);
+            PatternNext(new StringBuilder(patterngroup.PadRight(length)), patterngroup.Length, length);
 
             return IsFound;
         }
