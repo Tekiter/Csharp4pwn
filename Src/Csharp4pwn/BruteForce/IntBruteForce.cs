@@ -16,12 +16,12 @@ namespace Csharp4pwn.BruteForce
         /// </summary>
         public override bool IsWorking { get { return isworking; } }
 
-        public bool IsFound { get; set; }
+        public bool IsFound { get; private set; }
 
         /// <summary>
         /// Result after bruteforcing
         /// </summary>
-        public int Result { get; set; }
+        public int Result { get; private set; }
 
         public IntBruteForce(Func<int, bool> checkfunc)
         {
