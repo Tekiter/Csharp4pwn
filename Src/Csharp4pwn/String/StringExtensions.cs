@@ -8,14 +8,36 @@ namespace Csharp4pwn.String
 {
     public static class StringExtensions
     {
+
         public static string SliceEnd(this string str, int length)
         {
             return str.Substring(0, str.Length - length);
         }
 
+        /// <summary>
+        /// string[start:end]
+        /// </summary>
+        /// <param name="str"></param>
+        /// <param name="start"></param>
+        /// <param name="end"></param>
+        /// <returns></returns>
         public static string Slice(this string str, int start, int end)
         {
-            return str.Substring(start, str.Length - end - start);
+            if (end < 0)
+            {
+                end = str.Length + end;
+            }
+            if (start < 0)
+            {
+                start = str.Length + start;
+            }
+
+            if (start > end)
+            {
+                return "";
+            }
+
+            return str.Substring(start, end - start);
         }
 
         public static byte[] ToByteArray(this string hexString)
