@@ -45,12 +45,12 @@
     <Compile Include="BruteForce\DictionaryBruteForce.cs" />
     <Compile Include="BruteForce\IntBruteForce.cs" />
     <Compile Include="BruteForce\StringBruteForce.cs" />
+    <Compile Include="Interaction\Interact.cs" />
+    <Compile Include="Interaction\RemoteInteract.cs" />
     <Compile Include="Strings\StringExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Strings\StringHelper.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Interaction\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
