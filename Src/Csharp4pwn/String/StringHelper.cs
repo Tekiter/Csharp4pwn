@@ -42,6 +42,17 @@ namespace Csharp4pwn.String
         }
 
         /// <summary>
+        /// Return all alphabetical letters ('A'~'z')
+        /// </summary>
+        public static string AsciiLetters
+        {
+            get
+            {
+                return UpperCases + LowerCases;
+            }
+        }
+
+        /// <summary>
         /// Return all lowercase letters ('a'~'z')
         /// </summary>
         public static string Numbers
