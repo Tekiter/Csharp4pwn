@@ -6,8 +6,51 @@ using System.Threading.Tasks;
 
 namespace Csharp4pwn.BruteForce
 {
-    //public class IntBruteForce : BruteForceBase<int>
-    //{
+    public class IntBruteForce : BruteForceBase<int>
+    {
+        public override Func<int, bool> CheckFunction { get; set; } = (s) => { return false; };
 
-    //}
+        bool isworking = false;
+        public override bool IsWorking { get { return isworking; } }
+
+        public bool IsFound { get; set; }
+        
+        public int Result { get; set; }
+
+        public IntBruteForce(Func<int, bool> checkfunc)
+        {
+            CheckFunction = checkfunc;
+        }
+
+        public bool Start(int start, int end)
+        {
+            isworking = true;
+            for (int i = start; i <= end; i++)
+            {
+                if (CheckFunction(i))
+                {
+                    isworking = false;
+                    IsFound = true;
+                    Result = i;
+                    break;
+                }
+            }
+            return IsFound;
+        }
+
+        public bool StartParallel(int start, int end)
+        {
+            isworking = true;
+            Parallel.For(start, end + 1, (i, state) => {
+                if (CheckFunction(i))
+                {
+                    IsFound = true;
+                    Result = i;
+                    state.Break();
+                }
+            });
+            isworking = false;
+            return IsFound;
+        }
+    }
 }
