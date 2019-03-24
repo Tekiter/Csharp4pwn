@@ -20,19 +20,45 @@ namespace Csharp4pwn.Test
             //    Console.WriteLine("Found : {0}", f.Result);
             //}
 
-            IntBruteForce f = new IntBruteForce((i) => {
+            //IntBruteForce f = new IntBruteForce((i) => {
+            //    Console.WriteLine(i);
+            //    Thread.Sleep(100);
+            //    if (i == 5000)
+            //    {
+
+            //        return true;
+            //    }
+            //    return false;
+            //});
+            //if (f.StartParallel(0, 1000000))
+            //{
+            //    Console.WriteLine(f.Result);
+            //}
+            List<string> lst = new List<string>
+            {
+                "haha",
+                "Nice",
+                "Passwrd",
+                "NoNo",
+                "hahahahaha",
+                "helloworld",
+                "Nicetomeet",
+                "NONONO"
+            };
+            DictionaryBruteForce f = new DictionaryBruteForce((i) =>
+            {
                 Console.WriteLine(i);
-                Thread.Sleep(100);
-                if (i == 5000)
+                Thread.Sleep(1000);
+                if (i == "helloworld")
                 {
-                    
                     return true;
                 }
                 return false;
-            });
-            if (f.StartParallel(0, 1000000))
+            }, lst);
+
+            if (f.StartParallel())
             {
-                Console.WriteLine(f.Result);
+                Console.WriteLine("Found! {0}", f.Result);
             }
             
 

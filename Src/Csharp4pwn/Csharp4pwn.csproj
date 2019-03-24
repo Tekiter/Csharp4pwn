@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BruteForce\BruteForceBase.cs" />
+    <Compile Include="BruteForce\DictionaryBruteForce.cs" />
     <Compile Include="BruteForce\IntBruteForce.cs" />
     <Compile Include="BruteForce\StringBruteForce.cs" />
     <Compile Include="String\StringExtensions.cs" />
