@@ -1,6 +1,7 @@
 ﻿using Csharp4pwn.String;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -61,8 +62,28 @@ namespace Csharp4pwn.BruteForce
         public bool Start(string startpattern, int length)
         {
             isworking = true;
+            IsFound = false;
             PatternNext(new StringBuilder(startpattern.PadRight(length)), startpattern.Length, length);
 
+            return IsFound;
+        }
+
+        /// <summary>
+        /// Start bruteforcing parallelly
+        /// </summary>
+        /// <param name="length">Pattern Length</param>
+        /// <returns>Weather pattern found</returns>
+        public bool StartParallel(int length)
+        {
+            isworking = true;
+            IsFound = false;
+            Parallel.For(0, CharSetAvaliable.Length, (i, state) =>
+             {
+                 string startpattern = new string(CharSetAvaliable[i], 1);
+                 
+                 PatternNext(new StringBuilder(startpattern.PadRight(length)), startpattern.Length, length, state);
+             });
+            Debug.WriteLine("Done!");
             return IsFound;
         }
 
@@ -80,17 +101,47 @@ namespace Csharp4pwn.BruteForce
         {
             for (int i = 0; i < CharSetAvaliable.Length; i++)
             {
-                if (!IsWorking)
+
+                sb.Replace(sb[position], CharSetAvaliable[i], position, 1);
+
+                if (IsFound)
                 {
                     return;
                 }
 
+                if (position == length - 1)
+                {
+                    OnPattern(sb.ToString());
 
+                }
+                else
+                {
+                    PatternNext(sb, position + 1, length);
+                }
+
+            }
+        }
+
+        private void PatternNext(StringBuilder sb, int position, int length, ParallelLoopState pastate)
+        {
+            for (int i = 0; i < CharSetAvaliable.Length; i++)
+            {
+                
                 sb.Replace(sb[position], CharSetAvaliable[i], position, 1);
+
+                if (IsFound)
+                {
+                    if (pastate != null)
+                    {
+                        pastate.Break();
+                    }
+                    return;
+                }
 
                 if (position == length - 1)
                 {
                     OnPattern(sb.ToString());
+                    
                 }
                 else
                 {
