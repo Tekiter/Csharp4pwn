@@ -28,7 +28,7 @@ namespace Csharp4pwn.BruteForce
         /// <summary>
         /// Charset to create pattern
         /// </summary>
-        public string CharSetAvaliable { get; set; } = StringHelper.Printable;
+        public string CharSetAvaliable { get; set; } = StringHelper.AsciiLetters + StringHelper.Numbers;
 
 
         public StringBruteForce(Func<string, bool> checkFunc)
