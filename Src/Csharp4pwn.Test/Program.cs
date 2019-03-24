@@ -14,11 +14,11 @@ namespace Csharp4pwn.Test
         {
             Console.WriteLine("Start BruteForcing");
 
-            //StringBruteForce f = new StringBruteForce(CheckFunc);
-            //if (f.StartParallel(4))
-            //{
-            //    Console.WriteLine("Found : {0}", f.Result);
-            //}
+            StringBruteForce f = new StringBruteForce(CheckFunc);
+            if (f.Start("abcde",4))
+            {
+                Console.WriteLine("Found : {0}", f.Result);
+            }
 
             //IntBruteForce f = new IntBruteForce((i) => {
             //    Console.WriteLine(i);
@@ -34,33 +34,33 @@ namespace Csharp4pwn.Test
             //{
             //    Console.WriteLine(f.Result);
             //}
-            List<string> lst = new List<string>
-            {
-                "haha",
-                "Nice",
-                "Passwrd",
-                "NoNo",
-                "hahahahaha",
-                "helloworld",
-                "Nicetomeet",
-                "NONONO"
-            };
-            DictionaryBruteForce f = new DictionaryBruteForce((i) =>
-            {
-                Console.WriteLine(i);
-                Thread.Sleep(1000);
-                if (i == "helloworld")
-                {
-                    return true;
-                }
-                return false;
-            }, lst);
+            //List<string> lst = new List<string>
+            //{
+            //    "haha",
+            //    "Nice",
+            //    "Passwrd",
+            //    "NoNo",
+            //    "hahahahaha",
+            //    "helloworld",
+            //    "Nicetomeet",
+            //    "NONONO"
+            //};
+            //DictionaryBruteForce f = new DictionaryBruteForce((i) =>
+            //{
+            //    Console.WriteLine(i);
+            //    Thread.Sleep(1000);
+            //    if (i == "helloworld")
+            //    {
+            //        return true;
+            //    }
+            //    return false;
+            //}, lst);
 
-            if (f.StartParallel())
-            {
-                Console.WriteLine("Found! {0}", f.Result);
-            }
-            
+            //if (f.StartParallel())
+            //{
+            //    Console.WriteLine("Found! {0}", f.Result);
+            //}
+
 
             Console.ReadLine();
         }

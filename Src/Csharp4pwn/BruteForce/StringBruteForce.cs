@@ -61,6 +61,20 @@ namespace Csharp4pwn.BruteForce
         /// <returns>Found Pattern</returns>
         public bool Start(string patterngroup, int length)
         {
+            if (patterngroup.Length >= length)
+            {
+                throw new ArgumentException("Length of PatternGroup should be smaller than target length");
+            }
+
+            foreach (var i in patterngroup)
+            {
+                if (!CharSetAvaliable.Contains(i))
+                {
+                    throw new ArgumentException("PatternGroup's char does not exist in AvaliableCharSet");
+                }
+            }
+
+
             isworking = true;
             IsFound = false;
             PatternNext(new StringBuilder(patterngroup.PadRight(length)), patterngroup.Length, length);
