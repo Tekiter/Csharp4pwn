@@ -1,6 +1,5 @@
-﻿using Csharp4pwn.String;
+﻿using Csharp4pwn.Strings;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
