@@ -14,12 +14,21 @@ namespace Csharp4pwn.Test
             Console.WriteLine("Start BruteForcing");
 
             StringBruteForce f = new StringBruteForce(CheckFunc);
-            f.Start(4);
+            if (f.Start("AB",4))
+            {
+                Console.WriteLine("Found : {0}", f.Result);
+            }
+
+            Console.ReadLine();
         }
 
         static bool CheckFunc(string pattern)
         {
             Console.WriteLine(pattern);
+            if (pattern == "ABAA")
+            {
+                return true;
+            }
             return false;
         }
     }

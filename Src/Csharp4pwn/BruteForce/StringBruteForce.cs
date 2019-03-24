@@ -18,6 +18,8 @@ namespace Csharp4pwn.BruteForce
         /// </summary>
         public override bool IsWorking { get { return isworking; } }
 
+        public bool IsFound { get; private set; } = false;
+
 
         /// <summary>
         /// Result after bruteforcing
@@ -37,19 +39,40 @@ namespace Csharp4pwn.BruteForce
         }
 
 
-        public string Start(int length)
+        /// <summary>
+        /// Start bruteforcing
+        /// </summary>
+        /// <param name="length">Pattern Length</param>
+        /// <returns>Weather pattern found</returns>
+        public bool Start(int length)
         {
             isworking = true;
             PatternNext(new StringBuilder(CharSetAvaliable[0].Multiply(length)), 0, length);
+            
+            return IsFound;
+        }
 
-            return "";
+        /// <summary>
+        /// Start bruteforcing from given startpattern
+        /// </summary>
+        /// <param name="startpattern">startpattern "ab" will create pattern "abaa", "abab", "abac" ... </param>
+        /// <param name="length">Pattern Length</param>
+        /// <returns>Found Pattern</returns>
+        public bool Start(string startpattern, int length)
+        {
+            isworking = true;
+            PatternNext(new StringBuilder(startpattern.PadRight(length)), startpattern.Length, length);
+
+            return IsFound;
         }
 
         private void OnPattern(string pattern)
         {
             if (CheckFunction(pattern))
             {
+                IsFound = true;
                 isworking = false;
+                Result = pattern;
             }
         }
 
